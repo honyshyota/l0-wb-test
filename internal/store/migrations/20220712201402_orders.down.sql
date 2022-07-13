@@ -1,7 +1,1 @@
-DROP TYPE delivery CASCADE;
-
-DROP TYPE payment CASCADE;
-
-DROP TYPE item CASCADE;
-
 DROP TABLE orders;
