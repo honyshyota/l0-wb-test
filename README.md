@@ -52,5 +52,5 @@
 
 ## Look here
 
-![alt text](https://github.com/honyshyota/l0-wb-test/blob/master/images/docker_run.png)
+![alt text](https://github.com/honyshyota/l0-wb-test/blob/master/images/docker-run.png)
 ![alt text](https://github.com/honyshyota/l0-wb-test/blob/master/images/web.png)
