@@ -2,22 +2,13 @@ package main
 
 import (
 	"io/ioutil"
+	"strconv"
 
 	"github.com/nats-io/stan.go"
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
-	model, err := ioutil.ReadFile("model.json")
-	if err != nil {
-		logrus.Fatalln(err)
-	}
-
-	model1, err := ioutil.ReadFile("1.json")
-	if err != nil {
-		logrus.Fatalln(err)
-	}
-
 	options := stan.NatsURL("nats://localhost:4222")
 
 	stanConn, err := stan.Connect("test-cluster", "pub", options)
@@ -25,13 +16,18 @@ func main() {
 		logrus.Println(err)
 	}
 
-	err = stanConn.Publish("wb", model)
-	if err != nil {
-		logrus.Println(err)
-	}
+	for i := 0; i < 4; i++ {
+		s := strconv.Itoa(i)
 
-	err = stanConn.Publish("wb", model1)
-	if err != nil {
-		logrus.Println(err)
+		model, err := ioutil.ReadFile(s + ".json")
+		if err != nil {
+			break
+		}
+
+		err = stanConn.Publish("wb", model)
+		if err != nil {
+			logrus.Println(err)
+		}
+
 	}
 }

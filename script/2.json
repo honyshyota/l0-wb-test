@@ -1,0 +1,13 @@
+{
+    "order_uid": "wqerfv424b84b6test",
+    "track_number": "SOMETRACK",
+    "entry": "SOMEBIL",
+    "locale": "ru",
+    "internal_signature": "",
+    "customer_id": "some user",
+    "delivery_service": "meest",
+    "shardkey": "9",
+    "sm_id": 12,
+    "date_created": "2021-11-26T06:22:19Z",
+    "oof_shard": "1"
+}

@@ -42,6 +42,7 @@ func (s *service) Set(message []byte) error {
 
 	err := json.Unmarshal(message, &order)
 	if err != nil {
+		
 		return err
 	}
 
