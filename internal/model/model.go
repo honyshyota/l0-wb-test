@@ -3,13 +3,12 @@ package model
 import "time"
 
 type Order struct {
-	ID                int       `json:"id" db:"id"`
 	OrderUID          string    `json:"order_uid" db:"order_uid"`
 	TrackNum          string    `json:"track_number" db:"track_number"`
 	Entry             string    `json:"entry" db:"entry"`
 	Delivery          *Delivery `db:"delivery"`
 	Payment           *Payment  `db:"payment"`
-	Items             *[]Item   `db:"items"`
+	Items             []*Item   `db:"items"`
 	Locale            string    `json:"locale" db:"locale"`
 	InternalSignature string    `json:"internal_signature" db:"internal_signature"`
 	CustomerID        string    `json:"customer_id" db:"customer_id"`
