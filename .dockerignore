@@ -1,0 +1,10 @@
+#Ignoring git and cache folders
+.git
+
+#Ignoring all the markdown and class files
+
+/.idea
+/internal/pg
+/script
+
+Makefile

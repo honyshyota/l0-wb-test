@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=wbdb
+      - POSTGRES_USER=wbuser
+      - POSTGRES_PASSWORD=wbpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./internal/pg/data:/var/lib/postgresql/data
+
+  nats-streaming:
+    image: nats-streaming:latest
+    container_name: nats-streaming
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+  app:
+    build: .
+    container_name: golang-app
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_DB: "wbdb"
+      POSTGRES_USER: "wbuser"
+      POSTGRES_PASSWORD: "wbpass"
+    command: ./wait-for-postgres.sh db ./api
+    restart: always
+    depends_on:
+      - db
+      - nats-streaming
+
+volumes:
+  data:
